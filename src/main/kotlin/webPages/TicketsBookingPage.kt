@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
+import webPages.BasePage
 
 public class TicketsBookingPage(private val driver: WebDriver) : BasePage(driver) {
 
     @FindBy(id = "FromTag")
     var originFlightElement: WebElement? = null
-
 
     @FindBy(xpath = "((//*[@tabindex=\"-1\"])[4])")
     var originFlightSelectHighlightedElement: WebElement? = null
@@ -28,33 +28,26 @@ public class TicketsBookingPage(private val driver: WebDriver) : BasePage(driver
     @FindBy(id = "SearchBtn")
     var searchFlightElement: WebElement? = null
 
-    @FindBy(xpath = "(.//*[contains(text(),'Work travel? Sign up to unlock')])[2]")
+    @FindBy(xpath = "(.//*[contains(text(),'Bangalore')])[1]")
     var pageFullyLoadCheckElement: WebElement? = null
 
     init {
         PageFactory.initElements(driver, this)
     }
 
-
-    public fun searchFlight(travel: TravelDetails) {
-
+    public fun searchFlight(travel: TravelDetails): SelectFlightPage {
         enterOriginCity(travel.sourceCity)
-
         enterDestinationCity(travel.destCity)
-
         enterDate(travel.travelDate)
-
         click(searchFlightElement)
-
-        waitForElementsToLoad(pageFullyLoadCheckElement,"Work travel")
-
+        Thread.sleep(10000)
+        return SelectFlightPage(driver)
     }
 
     private fun enterDate(travelDate: String) {
         dateOfTravelElement?.sendKeys(Keys.BACK_SPACE)
         sendKeys(dateOfTravelElement, travelDate)
-
-
+        Thread.sleep(5000)
     }
 
     private fun enterOriginCity(sourceCity: String) {
@@ -65,8 +58,5 @@ public class TicketsBookingPage(private val driver: WebDriver) : BasePage(driver
     private fun enterDestinationCity(destinationCity: String) {
         sendKeys(destinationFlightElement, destinationCity)
         click(destinationFlightSelectHighlightedElement)
-
-
     }
-
 }

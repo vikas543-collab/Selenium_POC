@@ -1,12 +1,18 @@
-## Selenium automation POC using Kotlin
+## Automation POC for Lucidworks
 
 ## Problem Statement
 
-Automate Clear Trip ticket booking application and verify following :
+Automate a ticket booking application(www.cleartrip.com) and verify following :
 
-* Verify if title of home page is correct
-* Verify if lowest price ticket is displayed at the top by default
-* Verify if Itineray details : Source, destination flight and date of travel is displayed correctly on Itineray page
+* **VerifyEmailTest** : Verify if title of home page is correct
+* **VerifyInformationOnItineraryPageTest** : Verify if Itinerary details : Source, destination flight and date of travel is displayed correctly on Itineray page
+* **VerifyLowestFlightPriceTest** : Verify if lowest price ticket is displayed at the top by default
+* **VerifyTitleOfHomePage** : Verify if title of Home page is correct
+* **VerifyTravellerDetailsTest** : Verify if Itineray details : Source, destination flight and date of travel is displayed correctly on Itineray page
+
+## Demo of the framework 
+
+[Please click ] (https://drive.google.com/file/d/1RzLgN4wl7ifXtNIO8lYaOBMwvvY1X4Bg/view?usp=sharing)
 
 ## Project details
 
@@ -28,6 +34,3 @@ Automate Clear Trip ticket booking application and verify following :
 ### Steps to execute the test -
 
 `mvn clean test`
-
-
-

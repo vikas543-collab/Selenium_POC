@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
 import org.openqa.selenium.support.ui.Select
-import webPage.BasePage
 
 class TravellerDetailsPage (private val driver: WebDriver) : BasePage(driver) {
 
@@ -39,30 +38,18 @@ class TravellerDetailsPage (private val driver: WebDriver) : BasePage(driver) {
     public fun enterTravellerDetails(travellerInfo: Traveller){
 
         Select(titleOfTravellerElement).selectByValue(travellerInfo.title)
-
         BasePage(driver).sendKeys(firstNameElement,travellerInfo.firstName)
         BasePage(driver).sendKeys(lastNameElement,travellerInfo.lastName)
         BasePage(driver).sendKeys(mobileElement,travellerInfo.mobile)
         continueBtnToNavigateToPayment?.click()
-
         BasePage(driver).waitForElementsToLoad(creditCardLabelElement, "Credit card no.")
-
-
     }
 
     public fun isTravellerInfoCorrect(travellerInfo: Traveller):Boolean {
 
-
         Thread.sleep(2000)
-
         return ((travellerInfoElement?.text?.contains(travellerInfo.title)!!) &&
                 (travellerInfoElement?.text?.contains(travellerInfo.firstName)!!) &&
                 (travellerInfoElement?.text?.contains(travellerInfo.lastName)!!))
-
-
     }
-
-
-
-
 }

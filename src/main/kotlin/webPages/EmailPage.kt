@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
-import webPage.BasePage
 
 
 public class EmailPage(private val driver: WebDriver) {
@@ -22,30 +21,21 @@ public class EmailPage(private val driver: WebDriver) {
     @FindBy(id = "AdultOne")
     var travellerNameLabel: WebElement? = null
 
-
     init {
         PageFactory.initElements(driver, this)
     }
 
-
-    fun enterEmailAddress(email: Email) {
+    fun enterEmailAddress(email: Email): TravellerDetailsPage {
 
         BasePage(driver).sendKeys(emailElement, email.email)
         continueBtnAfterEmailAddress?.click()
-
         BasePage(driver).waitForElementsToLoad(travellerNameLabel, "Traveller name")
-
+        return TravellerDetailsPage(driver)
     }
 
     fun isEmailEnteredCorrectly(email: Email): Boolean {
-
         Thread.sleep(2000)
         var getUserEmailFromItineraryPage = userEmailRetrievedFromItineraryPage?.text
-
         return (getUserEmailFromItineraryPage.equals(email.email))
-
-
     }
-
-
 }

@@ -5,6 +5,8 @@ import org.testng.Assert
 import org.testng.annotations.Test
 import webPage.SelectFlightPage
 import webPage.TicketsBookingPage
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class VerifyLowestFlightPriceTest : TestBase() {
@@ -12,29 +14,21 @@ class VerifyLowestFlightPriceTest : TestBase() {
     private lateinit var ticketsBookingPage: TicketsBookingPage
     private lateinit var selectFlightPage: SelectFlightPage
 
-
     fun testSetup() {
-
-        ticketsBookingPage = TicketsBookingPage(driver)
-        selectFlightPage = SelectFlightPage(driver)
-
+        val driver = TestBase().testSetUp()
+        ticketsBookingPage = TicketsBookingPage(driver!!)
+        selectFlightPage = SelectFlightPage(driver!!)
     }
 
 
-    @Test(priority = 2)
+    @Test(description = "Verify if lowest flight price is on top",enabled = true, priority = 2)
     fun verifyLowestFlightPriceIsOnTheTop() {
-
         testSetup()
-        val travel = TravelDetails("Bangalore", "Lucknow", "14/02/2020")
-
+        val tomorrowsDate = LocalDate.now().plusMonths(2).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
+        val travel = TravelDetails("Bangalore", "Lucknow", travelDate = tomorrowsDate)
         ticketsBookingPage.searchFlight(travel)
 
         val isLowestPrice = selectFlightPage.isTheTopMostPriceLowest()
-
         Assert.assertEquals(isLowestPrice, true, "Lowest price is not displayed correctly")
-
-
     }
-
-
 }
