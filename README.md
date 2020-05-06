@@ -12,7 +12,7 @@ Automate a ticket booking application(www.cleartrip.com) and verify following :
 
 ## Demo of the framework 
 
-[Please click ] (https://drive.google.com/file/d/1RzLgN4wl7ifXtNIO8lYaOBMwvvY1X4Bg/view?usp=sharing)
+https://drive.google.com/file/d/1RzLgN4wl7ifXtNIO8lYaOBMwvvY1X4Bg/view?usp=sharing
 
 ## Project details
 
