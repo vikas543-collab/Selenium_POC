@@ -1,4 +1,4 @@
-## Automation POC for Lucidworks
+## Automation POC
 
 ## Problem Statement
 
